@@ -12,3 +12,4 @@ FixedRock.prototype.draw = function () {
     this.game.ctx.fillStyle = this.color;
     this.game.ctx.fillRect(this.posX, this.posY, this.width, this.height);
 }
+

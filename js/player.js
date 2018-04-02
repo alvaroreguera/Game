@@ -18,7 +18,6 @@ function Player(game) {
 }
 
 Player.prototype.draw = function () {
-    console.log("pintando");
     this.game.ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle);
     this.game.ctx.strokeStyle = "black";
     this.game.ctx.fillStyle = "blue";
