@@ -48,13 +48,12 @@ Game.prototype.generateMovingRock = function () {
     var width = this.canvas.width;
     for (let i = 0; i < this.movingRockNumber; i++) {
         if (i == 0) {
-            this.movingRock.push(new MovingRock(this,Math.floor(Math.random() * (this.canvas.width/2 - 200)) , (height / this.movingRockNumber * i) + 150, 200, 20))
+            this.movingRock.push(new MovingRock(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.movingRockNumber * i) + 150, 200, 20))
         } else {
-            this.movingRock.push(new MovingRock(this, Math.floor(Math.random() * (this.canvas.width/2 - 200)), (height / this.movingRockNumber * i) + 80, 200, 20))
+            this.movingRock.push(new MovingRock(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.movingRockNumber * i) + 80, 200, 20))
         }
     }
 };
-
 
 Game.prototype.generateFixedRock = function () {
     var height = this.canvas.height;
@@ -69,6 +68,7 @@ Game.prototype.generateFixedRock = function () {
             this.fixedRock.push(new FixedRock(this, width * 2.2 / 7, (height / this.fixedRockNumber * i) + 10, width * 3 / 7, height * 0.05))
         }
     }
+    console.log(this.fixedRock);
 };
 
 Game.prototype.draw = function () {
@@ -83,9 +83,10 @@ Game.prototype.draw = function () {
 };
 
 Game.prototype.moveAll = function () {
-    
+    // this.player.move();
     this.movingRock.forEach(function (movingRock) {
-        movingRock.move()})
+        movingRock.move()
+    })
 };
 
 

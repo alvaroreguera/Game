@@ -8,7 +8,6 @@ function FixedRock(game, posX, posY, width, height) {
 
 }
 FixedRock.prototype.draw = function () {
-    console.log("fixed");
     this.game.ctx.fillStyle = this.color;
     this.game.ctx.fillRect(this.posX, this.posY, this.width, this.height);
 }
