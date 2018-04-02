@@ -45,14 +45,16 @@ Game.prototype.clearObstacles = function () {
 };
 Game.prototype.generateMovingRock = function () {
     var height = this.canvas.height;
+    var width = this.canvas.width;
     for (let i = 0; i < this.movingRockNumber; i++) {
         if (i == 0) {
-            this.movingRock.push(new MovingRock(this, 0, (height / this.movingRockNumber * i) + 150, 200, 20))
+            this.movingRock.push(new MovingRock(this,Math.floor(Math.random() * (this.canvas.width/2 - 200)) , (height / this.movingRockNumber * i) + 150, 200, 20))
         } else {
-            this.movingRock.push(new MovingRock(this, 0, (height / this.movingRockNumber * i) + 80, 200, 20))
+            this.movingRock.push(new MovingRock(this, Math.floor(Math.random() * (this.canvas.width/2 - 200)), (height / this.movingRockNumber * i) + 80, 200, 20))
         }
     }
 };
+
 
 Game.prototype.generateFixedRock = function () {
     var height = this.canvas.height;

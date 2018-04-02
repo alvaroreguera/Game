@@ -4,9 +4,9 @@ function Player(game) {
     this.game = game;
     // this.img = new Image();
     // this.img.src = "./img/player.png";
-    this.x0 = this.game.canvas.width * 0.85
+    this.x0 = this.game.canvas.width * 0.15
     this.x = this.x0
-    this.y0 = this.game.canvas.height * 0.95; //limite inferior
+    this.y0 = this.game.canvas.height * 0.98; //limite inferior
     this.y = this.y0; //posicion actual de mario
     this.vy = 10; //velocidad de mario
     // this.width = 80;
@@ -24,7 +24,6 @@ Player.prototype.draw = function () {
     this.game.ctx.fill();
     this.game.ctx.stroke();
     this.game.ctx.closePath();
-
 
 };
 
