@@ -1,7 +1,5 @@
 function Player(game) {
-    var RIGHT_KEY = 39;
-    var LEFT_KEY = 37;
-    var TOP_KEY = 38;
+
     this.vy = 10;
     this.vx = 5;
     this.vz = 5;
@@ -9,50 +7,25 @@ function Player(game) {
     this.x0 = this.game.canvas.width * 0.15
     this.x = this.x0
     this.y0 = this.game.canvas.height * 0.98; //limite inferior
-    this.y = this.y0; //posicion actual de mario
+    this.y = this.y0; //posicion actual 
     this.jumping = false;
     this.onPlatform = false;
     this.radius = 10; // Arc radius
     this.startAngle = 0; // Starting point on circle
     this.endAngle = Math.PI * 2; // End point on circle
-    this.dx = 1;
-    this.dy = 1;
+    this.dx = 0;
+    this.dy = 0;
     this.speed = 5;
-    this.frictionX = 0.9, 
+    this.frictionX = 0.9;
     this.gravity = 0.25;
-    // this.img = new Image();
-    // this.img.src = "./img/player.png";
-    // this.width = 80;
-    // this.height = 100;
-    // this.animateImg();
-    document.onkeydown = function (event) {
-console.log(this.jumping);
-        switch (event.keyCode) {
-            case RIGHT_KEY:
-                console.log("right")
-                 if (this.dx < this.speed) {
-                    this.x += 10;
-                 }
-                break;
-            case LEFT_KEY:
-                console.log("left")
-                 if (this.dx > -this.speed) {
-                    this.x -= 10;
-                 }
-                break;
-            case TOP_KEY:
-                console.log("up")
-                if (!this.jumping) {
-                    this.jumping = true
-                    console.log(this.jumping);
-                    this.dy = -1 * this.speed * 1.5;
-                    this.y -= this.dy;
-                }
+    this.setListeners();
+}
+// this.img = new Image();
+// this.img.src = "./img/player.png";
+// this.width = 80;
+// this.height = 100;
+// this.animateImg();
 
-                break;
-        }
-    }.bind(this);
-};
 
 Player.prototype.draw = function () {
     this.game.ctx.beginPath();
@@ -67,9 +40,11 @@ Player.prototype.draw = function () {
 
 Player.prototype.move = function () {
 
-    if (!this.jumping ) {
+    if (!this.jumping) {
         this.dx *= this.frictionX;
-      }
+    }
+
+    this.x += this.dx;
 
     this.dy += this.gravity;
 
@@ -96,6 +71,73 @@ Player.prototype.move = function () {
     }
 
 };
+
+Player.prototype.setListeners = function () {
+
+    var map = {
+        39: false,  //RIGHT_KEY
+        37: false,  //LEFT_KEY
+        38: false,  //TOP_KEY
+        40: false, //DOWN_KEY
+
+    };
+
+    document.onkeydown = function (event) {
+
+        map[event.keyCode] = true;
+
+        if (map[40] && map[38]) {
+            
+            if (this.onPlatform) {
+                this.jumping = true;
+                this.dy = this.gravity * 100;
+                this.y += this.dy;
+            }
+        } else if (map[37] && map[38]) {
+            
+            if (!this.jumping) {
+                this.jumping = true;
+                this.dy = -1 * this.speed * 1.5;
+                if (this.dx > -this.speed) {
+                    this.dx -= 2;
+                }
+            }
+        } else if (map[39] && map[38]) {
+            
+            if (!this.jumping) {
+                this.jumping = true;
+                this.dy = -1 * this.speed * 1.5;
+                if (this.dx < this.speed) {
+                    this.dx += 2;
+                }
+            }
+        } else if (map[37]) {
+            
+            if (this.dx > -this.speed) {
+                this.dx -= 2;
+            }
+        } else if (map[39]) {
+            
+            if (this.dx < this.speed) {
+                this.dx += 2;
+            }
+        } else if (map[38]) {
+            
+            if (!this.jumping) {
+                this.jumping = true;
+                this.dy = -1 * this.speed * 1.2;
+            }
+        }
+    }.bind(this);
+
+    document.onkeyup = function (event) {
+        map[event.keyCode] = false;
+    }
+
+};
+
+
+  
 
 
 
