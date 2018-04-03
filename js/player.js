@@ -1,7 +1,7 @@
 function Player(game) {
-    this.RIGHT_KEY = 39;
-    this.TOP_KEY = 38;
-    this.LEFT_KEY = 37;
+    var RIGHT_KEY = 39;
+    var LEFT_KEY = 37;
+    var TOP_KEY = 38;
     this.vy = 10;
     this.vx = 5;
     this.vz = 5;
@@ -10,42 +10,47 @@ function Player(game) {
     this.x = this.x0
     this.y0 = this.game.canvas.height * 0.98; //limite inferior
     this.y = this.y0; //posicion actual de mario
+    this.jumping = false;
+    this.onPlatform = false;
     this.radius = 10; // Arc radius
     this.startAngle = 0; // Starting point on circle
     this.endAngle = Math.PI * 2; // End point on circle
-this.setListeners();
-        // this.img = new Image();
+    this.dx = 0;
+    this.dy = 0;
+    this.speed = 5;
+    this.gravity = 0.25;
+    // this.img = new Image();
     // this.img.src = "./img/player.png";
-        // this.width = 80;
+    // this.width = 80;
     // this.height = 100;
     // this.animateImg();
-}
+    document.onkeydown = function (event) {
 
-Player.prototype.setListeners = function() {
-    document.onkeydown = function(event) {
-      var d = 5;
-      
-      switch(event.keyCode) {
-        case this.RIGHT_KEY:
-        console.log("derecha");
-          this.x += d;
-          break;
-        case this.LEFT_KEY:
-          this.x -= d;
-          break;
-        case this.TOP_KEY:
-          this.y -= d;
-          break;
-        case this.BOTTOM_KEY:
-          this.y += d;
-          break;
-      }
-  
+        switch (event.keyCode) {
+            case RIGHT_KEY:
+                console.log("right")
+                if (this.dx < this.speed) {
+                    this.dx += 2;
+                }
+                break;
+            case LEFT_KEY:
+                console.log("left")
+                if (this.dx > -this.speed) {
+                    this.dx -= 2;
+                }
+                break;
+            case TOP_KEY:
+                console.log("up")
+                this.dy = -1 * this.speed * 1.5;
+                this.y -= this.dy;
+                this.jumping = true
+                break;
+        }
     }.bind(this);
-  };
+};
 
 Player.prototype.draw = function () {
-    console.log("Pintando");
+    this.game.ctx.beginPath();
     this.game.ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle);
     this.game.ctx.strokeStyle = "black";
     this.game.ctx.fillStyle = "blue";
@@ -55,18 +60,35 @@ Player.prototype.draw = function () {
 
 };
 
-    // Player.prototype.move = function() {
-    //     var gravity = 0.30;
-      
-    //     if (this.y >= this.y0) {
-    //       this.vy = 1;
-    //       this.y = this.y0;
-    //     } else {
-    //       this.vy += gravity;
-    //       this.y += this.vy;
-    //     }
-    //   }
-  
+Player.prototype.move = function () {
+
+    this.x += this.dx;
+
+    this.dy += this.gravity;
+
+    if (this.jumping || !this.onPlatform) {
+        this.y += this.dy;
+    }
+
+    if (!this.jumping && this.onPlatform && this.dy > 5) {
+        this.dy = 0;
+    }
+
+    if (this.x + this.radius > this.game.canvas.width) {
+        this.x = this.game.canvas.width - this.radius;
+    } else if (this.x < 0) {
+        this.x = 0;
+    }
+
+    // check limits in y (bottom)
+    if (this.y + this.radius > this.game.canvas.height) {
+        this.y = this.game.canvas.height - this.radius;
+        this.jumping = false;
+    }
+};
+
+
+
 
 
 
