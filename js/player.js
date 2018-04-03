@@ -15,9 +15,10 @@ function Player(game) {
     this.radius = 10; // Arc radius
     this.startAngle = 0; // Starting point on circle
     this.endAngle = Math.PI * 2; // End point on circle
-    this.dx = 0;
-    this.dy = 0;
+    this.dx = 1;
+    this.dy = 1;
     this.speed = 5;
+    this.frictionX = 0.9, 
     this.gravity = 0.25;
     // this.img = new Image();
     // this.img.src = "./img/player.png";
@@ -25,25 +26,29 @@ function Player(game) {
     // this.height = 100;
     // this.animateImg();
     document.onkeydown = function (event) {
-
+console.log(this.jumping);
         switch (event.keyCode) {
             case RIGHT_KEY:
                 console.log("right")
-                if (this.dx < this.speed) {
-                    this.dx += 2;
-                }
+                 if (this.dx < this.speed) {
+                    this.x += 10;
+                 }
                 break;
             case LEFT_KEY:
                 console.log("left")
-                if (this.dx > -this.speed) {
-                    this.dx -= 2;
-                }
+                 if (this.dx > -this.speed) {
+                    this.x -= 10;
+                 }
                 break;
             case TOP_KEY:
                 console.log("up")
-                this.dy = -1 * this.speed * 1.5;
-                this.y -= this.dy;
-                this.jumping = true
+                if (!this.jumping) {
+                    this.jumping = true
+                    console.log(this.jumping);
+                    this.dy = -1 * this.speed * 1.5;
+                    this.y -= this.dy;
+                }
+
                 break;
         }
     }.bind(this);
@@ -62,7 +67,9 @@ Player.prototype.draw = function () {
 
 Player.prototype.move = function () {
 
-    this.x += this.dx;
+    if (!this.jumping ) {
+        this.dx *= this.frictionX;
+      }
 
     this.dy += this.gravity;
 
@@ -80,11 +87,14 @@ Player.prototype.move = function () {
         this.x = 0;
     }
 
-    // check limits in y (bottom)
     if (this.y + this.radius > this.game.canvas.height) {
         this.y = this.game.canvas.height - this.radius;
         this.jumping = false;
+    } else if (this.y < 0) {
+        this.y = this.radius;
+
     }
+
 };
 
 
