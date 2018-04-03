@@ -74,70 +74,77 @@ Game.prototype.generateFixedRock = function () {
 };
 
 Game.prototype.isCollision = function () {
-    var collision = false;
+    var collisionFixed = false;
+    var collisionMoving = false;
+    var movingRockCol;
+    var fixedRockCol;
     for (let j = 0; j < this.movingRockNumber; j++) {
 
-            if (
-                this.player.x < this.movingRock[j].posX + this.movingRock[j].width &&
-                this.player.x + this.player.radius > this.movingRock[j].posX &&
-                this.player.y < this.movingRock[j].posY + this.movingRock[j].height &&
-                this.player.y + this.player.radius > this.movingRock[j].posY
-              ) {
-                collision = true;
-                  console.log("colisión");
+        if (
+            this.player.x < this.movingRock[j].posX + this.movingRock[j].width &&
+            this.player.x + this.player.radius > this.movingRock[j].posX &&
+            this.player.y < this.movingRock[j].posY + this.movingRock[j].height &&
+            this.player.y + this.player.radius > this.movingRock[j].posY
+        ) {
+            collisionMoving = true;
+            movingRockCol = this.movingRock[j];
+            console.log("colisión");
         }
     };
+    if (collisionMoving) {
+        this.player.onPlatform = true;
+        this.player.jumping = false;
+        this.player.y = movingRockCol.posY - this.player.radius;
+    } else if (!this.player.jumping && this.player.onPlatform) {
+        this.player.jumping = true;
+        this.player.onPlatform = false;
+    };
+
     for (let k = 0; k < this.fixedRockNumber; k++) {
 
-            if (
-                this.player.x < this.fixedRock[k].posX + this.fixedRock[k].width &&
-                this.player.x + this.player.radius > this.fixedRock[k].posX &&
-                this.player.y < this.fixedRock[k].posY + this.fixedRock[k].height &&
-                this.player.y + this.player.radius > this.fixedRock[k].posY
-              ) {
-                collision = true;
-                  console.log("colisión");
+        if (
+            this.player.x < this.fixedRock[k].posX + this.fixedRock[k].width &&
+            this.player.x + this.player.radius > this.fixedRock[k].posX &&
+            this.player.y < this.fixedRock[k].posY + this.fixedRock[k].height &&
+            this.player.y + this.player.radius > this.fixedRock[k].posY
+        ) {
+            collisionFixed = true;
+            fixedRockCol = this.fixedRock[k];
+            console.log("colisión");
         }
     };
-    if (collision) {
+
+    if (collisionFixed) {
         this.player.onPlatform = true;
         this.player.jumping = false;
-        this.player.y = this.movingRock.posY - this.player.radius;
-      } else if (!this.player.jumping && this.player.onPlatform) {
-        this.player.jumping = true;
-        this.player.onPlatform = false;
-      };
-      if (collision) {
-        this.player.onPlatform = true;
-        this.player.jumping = false;
-        this.player.y = this.fixedRock.posY - this.player.radius;
-      } else if (!this.player.jumping && this.player.onPlatform) {
+        this.player.y = fixedRockCol.posY - this.player.radius;
+    } else if (!this.player.jumping && this.player.onPlatform) {
         this.player.jumping = true;
         this.player.onPlatform = false;
 
     };
+}
+
+
+Game.prototype.draw = function () {
+
+    this.player.draw();
+    this.fixedRock.forEach(function (fixedRock) {
+        fixedRock.draw();
+    })
+    this.movingRock.forEach(function (movingRock) {
+        movingRock.draw();
+    })
 };
 
+Game.prototype.moveAll = function () {
+    this.player.move();
+    this.movingRock.forEach(function (movingRock) {
+        movingRock.move()
+    })
+};
 
-    Game.prototype.draw = function () {
-
-        this.player.draw();
-        this.fixedRock.forEach(function (fixedRock) {
-            fixedRock.draw();
-        })
-        this.movingRock.forEach(function (movingRock) {
-            movingRock.draw();
-        })
-    };
-
-    Game.prototype.moveAll = function () {
-        this.player.move();
-        this.movingRock.forEach(function (movingRock) {
-            movingRock.move()
-        })
-    };
-
-    Game.prototype.clear = function () {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    };
+Game.prototype.clear = function () {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+};
 
