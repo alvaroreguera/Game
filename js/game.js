@@ -63,17 +63,16 @@ Game.prototype.victory = function () {
 }
 
         Game.prototype.generateMovingRockRight = function () {
-            console.log("hola");
             var height = this.canvas.height;
             var width = this.canvas.width;
             for (let i = 0; i < this.movingRockRightNumber; i++) {
                 if (i == 0) {
-                    this.movingRockRight.push(new MovingRockRight(this, Math.floor(Math.random() * ((this.canvas.width - 200) - this.canvas.width / 2 + 200)), (height / this.movingRockRightNumber * i) + 150, 200, 20))
+                    this.movingRockRight.push(new MovingRockRight(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width/2 - 200)+this.canvas.width/2 + 200), (height / this.movingRockRightNumber * i) + 150, 200, 20))
                 } else {
-                    this.movingRockRight.push(new MovingRockRight(this, Math.floor(Math.random() * ((this.canvas.width - 200) - this.canvas.width / 2 + 200)), (height / this.movingRockRightNumber * i) + 80, 200, 20))
+                    this.movingRockRight.push(new MovingRockRight(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width/2 - 200)+this.canvas.width/2 + 200), (height / this.movingRockRightNumber * i) + 80, 200, 20))
                 }
             };
-            console.log(this.movingRockRight[0].posY);
+            console.log(this.movingRockRight[0].posX);
         };
 
         Game.prototype.generateFixedRock = function () {

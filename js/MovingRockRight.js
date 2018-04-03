@@ -15,7 +15,7 @@ MovingRockRight.prototype.draw = function () {
 
 MovingRockRight.prototype.move = function() {
     this.posX += this.vx;
-    if (this.posX > this.canvas.width - 200 - this.canvas.width / 2 + + this.width|| this.canvas.width / 2 + 200 < 0) {
+    if (this.posX > this.game.canvas.width - 200 || this.posX < this.game.canvas.width / 2 + this.game.canvas.width*0.05)  {
       this.vx *= -1;
     }
 
