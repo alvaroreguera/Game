@@ -1,7 +1,7 @@
 function Win(game) {
 
     this.game = game;
-    this.x = this.game.canvas.width - 20;
+    this.x = this.game.canvas.width/2 + this.game.canvas.width * 0.05;
     this.y = this.game.canvas.height - 30; //posicion actual 
     this.width = 20; 
     this.height = 30; 
