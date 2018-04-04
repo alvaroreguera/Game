@@ -20,3 +20,7 @@ MovingRockLeft.prototype.move = function() {
     }
 
 };
+
+MovingRockLeft.prototype.collidesWith = function(player){
+    return false;
+}

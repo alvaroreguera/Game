@@ -8,17 +8,19 @@ function Game(canvasId) {
     this.score = new Score(this);
     this.movingRockLeft = [];
     this.movingRockLeftNumber = 5;
-    this.generateMovingRockLeft();
     this.movingRockRight = [];
     this.movingRockRightNumber = 5;
-    this.generateMovingRockRight();
     this.fixedRock = [];
     this.fixedRockNumber = 5;
-    this.generateFixedRock();
-    this.decrement = 20;
-
+    this.decrement = 5;
+    
 }
 Game.prototype.start = function () {
+    
+    
+    this.generateMovingRockLeft();
+    this.generateMovingRockRight();
+    this.generateFixedRock();
     this.interval = setInterval(function () {
         
         this.framesCounter===1000?this.framesCounter=0:this.framesCounter++
@@ -52,17 +54,17 @@ Game.prototype.gameOver = function() {
     }
   };
 
-//   Game.prototype.reset = function() {
-//     // this.background = new Background(this);
-//     this.player = new Player(this);
-//     this.win = new Win(this);
-//     this.score = new Score(this);
-//     this.movingRockLeft = [];
-//     this.movingRockRight = [];
-//     this.fixedRock = [];
-//     this.framesCounter = 0;
-//     this.decrement = 20;
-//   };
+  Game.prototype.reset = function() {
+    // this.background = new Background(this);
+    this.player = new Player(this);
+    this.win = new Win(this);
+    this.score = new Score(this);
+    this.movingRockLeft = [];
+    this.movingRockRight = [];
+    this.fixedRock = [];
+    this.framesCounter = 0;
+    this.decrement = 5;
+  };
 
 Game.prototype.generateMovingRockLeft = function () {
 
@@ -106,6 +108,16 @@ Game.prototype.generateFixedRock = function () {
 };
 
 Game.prototype.isCollision = function () {
+
+
+    // this.rocksArray.forEach(function(rock){
+    //     if(rock.collidesWith(this.player)){
+    //         this.player.pos(rock.y)
+    //     }
+    // })
+
+
+
     var collisionFixed = false;
     var collisionMovingLeft = false;
     var collisionMovingRight = false;
