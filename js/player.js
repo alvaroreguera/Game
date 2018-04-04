@@ -15,6 +15,8 @@ function Player(game) {
     this.endAngle = Math.PI * 2; // End point on circle
     this.dx = 0;
     this.dy = 0;
+    this.lastX = 0;
+  this.lastY = 0;
     this.speed = 5;
     this.frictionX = 0.9;
     this.gravity = 0.25;
@@ -90,6 +92,8 @@ Player.prototype.setListeners = function () {
             
             if (this.onPlatform) {
                 this.jumping = true;
+                this.lastY = this.y;
+                this.lastX = this.x;
                 this.dy = this.gravity * 100;
                 this.y += this.dy;
             }
@@ -97,6 +101,8 @@ Player.prototype.setListeners = function () {
             
             if (!this.jumping) {
                 this.jumping = true;
+                this.lastY = this.y;
+                this.lastX = this.x;
                 this.dy = -1 * this.speed * 1.5;
                 if (this.dx > -this.speed) {
                     this.dx -= 2;
@@ -106,6 +112,8 @@ Player.prototype.setListeners = function () {
             
             if (!this.jumping) {
                 this.jumping = true;
+                this.lastY = this.y;
+                this.lastX = this.x;
                 this.dy = -1 * this.speed * 1.5;
                 if (this.dx < this.speed) {
                     this.dx += 2;
@@ -114,16 +122,22 @@ Player.prototype.setListeners = function () {
         } else if (map[37]) {
             
             if (this.dx > -this.speed) {
+                this.lastY = this.y;
+                this.lastX = this.x;
                 this.dx -= 2;
             }
         } else if (map[39]) {
             
             if (this.dx < this.speed) {
+                this.lastY = this.y;
+                this.lastX = this.x;
                 this.dx += 2;
             }
         } else if (map[38]) {
             
             if (!this.jumping) {
+                this.lastY = this.y;
+                this.lastX = this.x;
                 this.jumping = true;
                 this.dy = -1 * this.speed * 1.2;
             }
