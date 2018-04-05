@@ -1,18 +1,60 @@
 #canvas {
 
-    border: 1px dotted;
+	border: 1px dotted;
+	margin: 0 auto;
 }
 
  body {
-background-image: url("../images/ST-ewokvillage.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
     height: 100%;
     width: 100%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: kirbyss;
 	font-weight: 600;
 	font-size: 13px;
+	margin: 0;
+	padding: 0;
+	margin: 0;
+  background-color: black;
+  color: white;
+  align-content: center;
+
 }  
+
+.bodyindex {
+	background-image: url("../images/endormoon.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+	width: 100%;
+	margin: 0 auto;
+
+}
+
+.bodygame {
+	background-image: url("../images/ST-ewokvillage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+	margin: 0 auto;
+}
+
+.bodyvic {
+	background-image: url("../images/EndorParty.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+	margin: 0 auto;
+}
+
+.bodygameover {
+	background-image: url("../images/gameover.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+
+}
 
 
 button {

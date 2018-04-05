@@ -8,7 +8,7 @@ function Game(canvasId) {
     this.score = new Score(this);
     this.rock = [];
     this.rockNumber = 15;
-    this.decrement = 50;
+    this.decrement = 10;
 
 }
 Game.prototype.start = function () {
@@ -34,17 +34,20 @@ Game.prototype.stop = function () {
 Game.prototype.victory = function () {
     this.stop();
     this.reset();
-    if (confirm("Victory!!!!")) {
-        this.start();
-    }
+    window.location.href = "victory.html";
+    
+    // if (confirm("Victory!!!!")) {
+    //     this.start();
+    // }
 };
 
 Game.prototype.gameOver = function () {
     this.stop();
     this.reset();
-    if (confirm("GAME OVER. Play again?")) {
-        this.start();
-    }
+    window.location.href = "gameover.html";
+    // if (confirm("GAME OVER. Play again?")) {
+    //     this.start();
+    // }
 };
 
 Game.prototype.reset = function () {
@@ -52,12 +55,9 @@ Game.prototype.reset = function () {
     this.player = new Player(this);
     this.win = new Win(this);
     this.score = new Score(this);
-    // this.movingRockLeft = [];
-    // this.movingRockRight = [];
-    // this.fixedRock = [];
     this.rock = [];
     this.framesCounter = 0;
-    this.decrement = 50;
+    this.decrement = 10;
 };
 
 Game.prototype.generateRock = function () {
@@ -85,47 +85,6 @@ Game.prototype.generateRock = function () {
 }
 
 
-// Game.prototype.generateMovingRockLeft = function () {
-
-//     var height = this.canvas.height;
-//     var width = this.canvas.width;
-//     for (let i = 0; i < this.movingRockLeftNumber; i++) {
-//         if (i == 0) {
-
-//             this.movingRockLeft.push(new MovingRockLeft(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.movingRockLeftNumber * i) + 150, 200, 20))
-//         } else {
-//             this.movingRockLeft.push(new MovingRockLeft(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.movingRockLeftNumber * i) + 80, 200, 20))
-//         };
-//     }
-// }
-
-// Game.prototype.generateMovingRockRight = function () {
-//     var height = this.canvas.height;
-//     var width = this.canvas.width;
-//     for (let i = 0; i < this.movingRockRightNumber; i++) {
-//         if (i == 0) {
-//             this.movingRockRight.push(new MovingRockRight(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width / 2 - 200) + this.canvas.width / 2 + 200), (height / this.movingRockRightNumber * i) + 150, 200, 20))
-//         } else {
-//             this.movingRockRight.push(new MovingRockRight(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width / 2 - 200) + this.canvas.width / 2 + 200), (height / this.movingRockRightNumber * i) + 80, 200, 20))
-//         }
-//     };
-// };
-
-// Game.prototype.generateFixedRock = function () {
-//     var height = this.canvas.height;
-//     var width = this.canvas.width;
-//     for (let i = 0; i < this.fixedRockNumber; i++) {
-//         if (i == 0) {
-//             this.fixedRock.push(new FixedRock(this, width / 2, height * 0.1, width * 0.05, height * 0.9))
-//         } else if (i == 1) {
-//             this.fixedRock.push(new FixedRock(this, width * 1.6 / 7, height * 0.1, width * 0.6, height * 0.05))
-//         }
-//         else {
-//             this.fixedRock.push(new FixedRock(this, width * 2.2 / 7, (height / this.fixedRockNumber * i) + 10, width * 3 / 7, height * 0.05))
-//         }
-//     }
-// };
-
 Game.prototype.isCollision = function () {
     var collision = false;
 
@@ -138,89 +97,6 @@ Game.prototype.isCollision = function () {
         } else { this.player.onPlatform = false;}
     }.bind(this))
 
-
-        // } else if (!this.player.jumping && this.player.onPlatform) {
-        //     this.player.jumping = false;
-        //     this.player.onPlatform = false;
-        // }
-    // })
-
-
-
-    //     var collisionFixed = false;
-    //     var collisionMovingLeft = false;
-    //     var collisionMovingRight = false;
-    //     var movingRockColLeft;
-    //     var movingRockColRight;
-    //     var fixedRockCol;
-
-    //     for (let j = 0; j < this.movingRockLeftNumber; j++) {
-    //         if (
-    //             this.player.x < this.movingRockLeft[j].posX + this.movingRockLeft[j].width &&
-    //             this.player.x + this.player.radius > this.movingRockLeft[j].posX &&
-    //             this.player.y < this.movingRockLeft[j].posY &&
-    //             this.player.y + this.player.radius > this.movingRockLeft[j].posY
-    //         ) {
-    //             collisionMovingLeft = true;
-    //             movingRockColLeft = this.movingRockLeft[j];
-
-    //         }
-    //     };
-    //     if (collisionMovingLeft) {
-    //         this.player.onPlatform = true;
-    //         this.player.jumping = false;
-    //         this.player.y = movingRockColLeft.posY - this.player.radius;
-    //     } else if (!this.player.jumping && this.player.onPlatform) {
-    //         this.player.jumping = false;
-    //         this.player.onPlatform = false;
-    //     };
-
-    //     for (let h = 0; h < this.movingRockRightNumber; h++) {
-
-
-    //         if (
-    //             this.player.x < this.movingRockRight[h].posX + this.movingRockRight[h].width &&
-    //             this.player.x + this.player.radius > this.movingRockRight[h].posX &&
-    //             this.player.y < this.movingRockRight[h].posY &&
-    //             this.player.y + this.player.radius > this.movingRockRight[h].posY
-    //         ) {
-    //             collisionMovingRight = true;
-    //             movingRockColRight = this.movingRockRight[h];
-    //             console.log("colisión");
-    //         }
-    //     };
-    //     if (collisionMovingRight) {
-    //         this.player.onPlatform = true;
-    //         this.player.jumping = false;
-    //         console.log(this.player.jumping);
-    //         this.player.y = movingRockColRight.posY - this.player.radius;
-    //     } else if (!this.player.jumping && this.player.onPlatform) {
-    //         this.player.jumping = false;
-    //         this.player.onPlatform = false;
-    //     };
-
-
-    //     for (let k = 1; k < this.fixedRockNumber; k++) {
-    //         if (
-    //             this.player.x < this.fixedRock[k].posX + this.fixedRock[k].width &&
-    //             this.player.x + this.player.radius > this.fixedRock[k].posX &&
-    //             this.player.y < this.fixedRock[k].posY + this.fixedRock[k].height &&
-    //             this.player.y + this.player.radius > this.fixedRock[k].posY
-    //         ) {
-    //             collisionFixed = true;
-    //             fixedRockCol = this.fixedRock[k];
-    //         }
-    //     };
-
-    //     if (collisionFixed) {
-    //         this.player.onPlatform = true;
-    //         this.player.y = fixedRockCol.posY - this.player.radius;
-    //         this.player.jumping = false;
-    //     } else if (!this.player.jumping && this.player.onPlatform) {
-    //         this.player.jumping = false;
-    //         this.player.onPlatform = false;
-
-    //     };
 
         if (this.player.x < this.rock[10].posX + this.rock[10].width &&   
             this.player.x + this.player.radius > this.rock[10].posX &&     
@@ -252,15 +128,6 @@ this.background.draw();
             rock.draw();
         })
 
-        // this.fixedRock.forEach(function (fixedRock) {
-        //     fixedRock.draw();
-        // })
-        // this.movingRockLeft.forEach(function (movingRockLeft) {
-        //     movingRockLeft.draw();
-        // })
-        // this.movingRockRight.forEach(function (movingRockRight) {
-        //     movingRockRight.draw();
-        // })
     };
 
     Game.prototype.moveAll = function () {
