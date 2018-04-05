@@ -10,9 +10,11 @@ function Player(game) {
     this.y = this.y0; //posicion actual 
     this.jumping = false;
     this.onPlatform = false;
-    this.radius = 10; // Arc radius
-    this.startAngle = 0; // Starting point on circle
-    this.endAngle = Math.PI * 2; // End point on circle
+    this.width = 30;
+    this.height = 30;
+    // this.radius = 10; // Arc radius
+    // this.startAngle = 0; // Starting point on circle
+    // this.endAngle = Math.PI * 2; // End point on circle
     this.dx = 0;
     this.dy = 0;
     this.lastX = 0;
@@ -31,7 +33,7 @@ function Player(game) {
 
 Player.prototype.draw = function () {
     this.game.ctx.beginPath();
-    this.game.ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle);
+    this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
     this.game.ctx.strokeStyle = "black";
     this.game.ctx.fillStyle = "blue";
     this.game.ctx.fill();
@@ -58,14 +60,14 @@ Player.prototype.move = function () {
     //     this.dy = 0;
     // }
 
-    if (this.x + this.radius > this.game.canvas.width) {
-        this.x = this.game.canvas.width - this.radius;
+    if (this.x + this.width > this.game.canvas.width) {
+        this.x = this.game.canvas.width - this.width;
     } else if (this.x < 0) {
         this.x = 0;
     }
 
-    if (this.y + this.radius > this.game.canvas.height) {
-        this.y = this.game.canvas.height - this.radius;
+    if (this.y + this.height > this.game.canvas.height) {
+        this.y = this.game.canvas.height - this.height;
         this.jumping = false;
     } else if (this.y < 0) {
         this.dy *= 0;;

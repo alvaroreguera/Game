@@ -1,13 +1,20 @@
-#canvas {
+@font-face {
+    font-family: kirbyss;
+	src: url('../images/kirbyss.ttf');
+}
 
-	border: 1px dotted;
-	margin: 0 auto;
+#canvas {
+display: block;
+	border: rgba(0,0,0,0.2);
+	border-style: dotted;
+	margin-left: 6%;
+	margin-top: 2%;
 }
 
  body {
     height: 100%;
     width: 100%;
-    font-family: kirbyss;
+    font-family: kirbyss, Arial, Helvetica, sans-serif;
 	font-weight: 600;
 	font-size: 13px;
 	margin: 0;
@@ -17,7 +24,12 @@
   color: white;
   align-content: center;
 
-}  
+}
+
+.container {
+	align-items: center;
+	margin-left: 41%;
+}
 
 .bodyindex {
 	background-image: url("../images/endormoon.jpg");
@@ -56,6 +68,10 @@
 
 }
 
+a {
+    color: beige;
+}
+
 
 button {
 	position: relative;
@@ -73,6 +89,22 @@ button {
     padding: 10px 20px 12px 20px;
 	color: rgba(0,0,0,0.7);
     text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
-    background: url(http://subtlepatterns.com/patterns/wood_pattern.png);
+	background: url(http://subtlepatterns.com/patterns/wood_pattern.png);
+	margin-top: 2%
+}
+
+.texto {
+align-items: center;
+text-align: center;
+padding-top: 30%;
+
+}
+
+h1 {
+	font-size: 50px;
+}
+
+a {
+	font-size: 20px;
 }
 

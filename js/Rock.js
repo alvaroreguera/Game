@@ -31,10 +31,11 @@ Rock.prototype.move = function () {
 
 Rock.prototype.collidesWith = function (player) {
     if (this.game.player.x < this.posX + this.width &&
-        this.game.player.x + this.game.player.radius > this.posX &&
+        this.game.player.x + this.game.player.width > this.posX &&
         this.game.player.y < this.posY &&
-        this.game.player.y + this.game.player.radius > this.posY
+        this.game.player.y + this.game.player.height > this.posY
              ) {
+                 console.log(this.game.player);
         return true;
     }
 }

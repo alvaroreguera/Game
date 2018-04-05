@@ -8,7 +8,7 @@ function Game(canvasId) {
     this.score = new Score(this);
     this.rock = [];
     this.rockNumber = 15;
-    this.decrement = 10;
+    this.decrement = 20;
 
 }
 Game.prototype.start = function () {
@@ -57,7 +57,7 @@ Game.prototype.reset = function () {
     this.score = new Score(this);
     this.rock = [];
     this.framesCounter = 0;
-    this.decrement = 10;
+    this.decrement = 20;
 };
 
 Game.prototype.generateRock = function () {
@@ -93,24 +93,24 @@ Game.prototype.isCollision = function () {
             this.player.dy= 0;
             this.player.onPlatform = true;
             this.player.jumping = false;
-            this.player.y = rock.posY - this.player.radius;
+            this.player.y = rock.posY - this.player.height;
+            console.log(this.player.height);
         } else { this.player.onPlatform = false;}
     }.bind(this))
 
-
         if (this.player.x < this.rock[10].posX + this.rock[10].width &&   
-            this.player.x + this.player.radius > this.rock[10].posX &&     
+            this.player.x + this.player.width > this.rock[10].posX &&     
             this.player.y < this.rock[10].posY + this.rock[10].height &&   
-            this.player.y + this.player.radius > this.rock[10].posY      
+            this.player.y + this.player.height > this.rock[10].posY      
         ) {
             this.player.dx *= -1;
 
         };
 
         if (this.player.x < this.win.x + this.win.width &&
-            this.player.x + this.player.radius > this.win.x &&
+            this.player.x + this.player.width > this.win.x &&
             this.player.y < this.win.y + this.win.height &&
-            this.player.y + this.player.radius > this.win.y
+            this.player.y + this.player.height > this.win.y
         ) {
             this.victory();
 
