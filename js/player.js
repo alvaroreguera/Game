@@ -22,8 +22,8 @@ function Player(game) {
     this.gravity = 0.25;
     this.setListeners();
 }
-// this.img = new Image();
-// this.img.src = "./img/player.png";
+//  this.img = new Image();
+// this.img.src = "./images/stand1.png";
 // this.width = 80;
 // this.height = 100;
 // this.animateImg();

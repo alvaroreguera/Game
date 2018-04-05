@@ -1,28 +1,18 @@
 function Game(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext("2d");
-    // this.background = new Background(this);
+    this.background = new Background(this);
     this.player = new Player(this);
     this.win = new Win(this);
     this.framesCounter = 0;
     this.score = new Score(this);
     this.rock = [];
     this.rockNumber = 15;
-    // this.movingRockLeft = [];
-    // this.movingRockLeftNumber = 5;
-    // this.movingRockRight = [];
-    // this.movingRockRightNumber = 5;
-    // this.fixedRock = [];
-    // this.fixedRockNumber = 5;
     this.decrement = 50;
 
 }
 Game.prototype.start = function () {
 
-
-    // this.generateMovingRockLeft();
-    // this.generateMovingRockRight();
-    // this.generateFixedRock();
     this.generateRock();
     this.interval = setInterval(function () {
 
@@ -75,20 +65,20 @@ Game.prototype.generateRock = function () {
     var width = this.canvas.width;
     for (let i = 0; i < this.rockNumber; i++) {
         if (i == 0) {
-            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.rockNumber * i) + 150, 200, 20, "blue", 3))
+            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.rockNumber * i) + 150, 200, 20, "blue", Math.floor(Math.random() * (7-3)+1)))
         } else if (i < 5 && i > 0) {
-            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.rockNumber * i * 2.9) + 70, 200, 20, "blue", 3))
+            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width / 2 - 200)), (height / this.rockNumber * i * 2.9) + 70, 200, 20, "blue", Math.floor(Math.random() * (7-3)+1)))
             }  else if (i == 5) {
-            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width / 2 - 200) + this.canvas.width / 2 + 200), (height / this.rockNumber * (i - 5) + 150), 200, 20, "green", 3))
+            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width / 2 - 200) + this.canvas.width / 2 + 200), (height / this.rockNumber * (i - 5) + 150), 200, 20, "green", Math.floor(Math.random() * (7-3)+1)))
         } else if (i < 10 && i > 5) {
-            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width / 2 - 200) + this.canvas.width / 2 + 200), (height / this.rockNumber * (i - 5) * 2.8) + 80, 200, 20, "green", 3))
+            this.rock.push(new Rock(this, Math.floor(Math.random() * (this.canvas.width - 200 - this.canvas.width / 2 - 200) + this.canvas.width / 2 + 200), (height / this.rockNumber * (i - 5) * 2.8) + 80, 200, 20, "green", Math.floor(Math.random() * (7-3)+1)))
         } else if (i == 10) {
-            this.rock.push(new Rock(this, width / 2, height * 0.1, width * 0.05, height * 0.9, "grey", 0))
+            this.rock.push(new Rock(this, width / 2, height * 0.1, width * 0.05, height * 0.9, "#8B4513", 0))
         } else if (i == 11) {
-            this.rock.push(new Rock(this, width * 1.6 / 7, height * 0.1, width * 0.6, height * 0.05, "grey", 0))
+            this.rock.push(new Rock(this, width * 1.6 / 7, height * 0.1, width * 0.6, height * 0.05, "#8B4513", 0))
         }
         else {
-            this.rock.push(new Rock(this, width * 2.2 / 7, (i - 10) * 130, width * 3 / 7, height * 0.05, "grey", 0))
+            this.rock.push(new Rock(this, width * 2.2 / 7, (i - 10) * 130, width * 3 / 7, height * 0.05, "#8B4513", 0))
         }
 
     }
@@ -254,7 +244,7 @@ Game.prototype.isCollision = function () {
 
 
     Game.prototype.draw = function () {
-
+this.background.draw();
         this.player.draw();
         this.win.draw();
         this.score.draw();
