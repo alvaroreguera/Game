@@ -90,7 +90,8 @@ button {
 	color: rgba(0,0,0,0.7);
     text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
 	background: url(http://subtlepatterns.com/patterns/wood_pattern.png);
-	margin-top: 2%
+	margin-top: 2%;
+	font-family: kirbyss, Arial, Helvetica, sans-serif;
 }
 
 .texto {

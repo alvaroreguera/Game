@@ -11,10 +11,7 @@ function Player(game) {
     this.jumping = false;
     this.onPlatform = false;
     this.width = 30;
-    this.height = 30;
-    // this.radius = 10; // Arc radius
-    // this.startAngle = 0; // Starting point on circle
-    // this.endAngle = Math.PI * 2; // End point on circle
+    this.height = 0;
     this.dx = 0;
     this.dy = 0;
     this.lastX = 0;
@@ -23,22 +20,27 @@ function Player(game) {
     this.frictionX = 0.9;
     this.gravity = 0.25;
     this.setListeners();
+    this.img = new Image();
+    this.img.src = "images/sprites/stand1.png";
+    this.width = 40;
+    this.height = 50;
+    // this.animateImg();
 }
-//  this.img = new Image();
-// this.img.src = "./images/stand1.png";
-// this.width = 80;
-// this.height = 100;
-// this.animateImg();
-
 
 Player.prototype.draw = function () {
-    this.game.ctx.beginPath();
-    this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
-    this.game.ctx.strokeStyle = "black";
-    this.game.ctx.fillStyle = "blue";
-    this.game.ctx.fill();
-    this.game.ctx.stroke();
-    this.game.ctx.closePath();
+    this.game.ctx.drawImage(
+        this.img,
+        this.x,
+        this.y,
+        this.width,
+        this.height
+    );
+    // this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
+    // this.game.ctx.strokeStyle = "black";
+    // this.game.ctx.fillStyle = "blue";
+    // this.game.ctx.fill();
+    // this.game.ctx.stroke();
+    // this.game.ctx.closePath();
 
 };
 
