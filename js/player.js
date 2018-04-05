@@ -16,7 +16,7 @@ function Player(game) {
     this.dx = 0;
     this.dy = 0;
     this.lastX = 0;
-  this.lastY = 0;
+    this.lastY = 0;
     this.speed = 5;
     this.frictionX = 0.9;
     this.gravity = 0.25;
@@ -54,9 +54,9 @@ Player.prototype.move = function () {
         this.y += this.dy;
     }
 
-    if (!this.jumping && this.onPlatform && this.dy > 5) {
-        this.dy = 0;
-    }
+    // if (!this.jumping && this.onPlatform && this.dy > 5) {console.log("llego")
+    //     this.dy = 0;
+    // }
 
     if (this.x + this.radius > this.game.canvas.width) {
         this.x = this.game.canvas.width - this.radius;
@@ -68,7 +68,7 @@ Player.prototype.move = function () {
         this.y = this.game.canvas.height - this.radius;
         this.jumping = false;
     } else if (this.y < 0) {
-        this.y = this.radius;
+        this.dy *= 0;;
 
     }
 
@@ -89,7 +89,7 @@ Player.prototype.setListeners = function () {
         map[event.keyCode] = true;
 
         if (map[40] && map[38]) {
-            
+
             if (this.onPlatform) {
                 this.jumping = true;
                 this.lastY = this.y;
@@ -98,7 +98,7 @@ Player.prototype.setListeners = function () {
                 this.y += this.dy;
             }
         } else if (map[37] && map[38]) {
-            
+
             if (!this.jumping) {
                 this.jumping = true;
                 this.lastY = this.y;
@@ -109,37 +109,37 @@ Player.prototype.setListeners = function () {
                 }
             }
         } else if (map[39] && map[38]) {
-            
+
             if (!this.jumping) {
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;
-                this.dy = -1 * this.speed * 1.5;
+                this.dy = -1.2 * this.speed * 1.5;
                 if (this.dx < this.speed) {
                     this.dx += 2;
                 }
             }
         } else if (map[37]) {
-            
+
             if (this.dx > -this.speed) {
                 this.lastY = this.y;
                 this.lastX = this.x;
-                this.dx -= 2;
+                this.dx -= 3;
             }
         } else if (map[39]) {
-            
+
             if (this.dx < this.speed) {
                 this.lastY = this.y;
                 this.lastX = this.x;
-                this.dx += 2;
+                this.dx += 3;
             }
         } else if (map[38]) {
-            
+
             if (!this.jumping) {
                 this.lastY = this.y;
                 this.lastX = this.x;
                 this.jumping = true;
-                this.dy = -1 * this.speed * 1.2;
+                this.dy = -1.2 * this.speed * 1.2;
             }
         }
     }.bind(this);
@@ -151,7 +151,7 @@ Player.prototype.setListeners = function () {
 };
 
 
-  
+
 
 
 
