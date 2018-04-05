@@ -91,6 +91,7 @@ Player.prototype.setListeners = function () {
         if (map[40] && map[38]) {
 
             if (this.onPlatform) {
+                // this.img.src=''
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;

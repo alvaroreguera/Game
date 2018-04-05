@@ -6,10 +6,13 @@ function Rock(game, posX, posY, width, height, color, vx) {
     this.width = width;
     this.height = height;
     this.vx = vx;
+    // this.image = new Image();
+    // this.image.src = "https://mdn.mozillademos.org/files/222/Canvas_createpattern.png";
+    // this.pattern = this.game.ctx.createPattern(this.image, "repeat");
 }
 
 Rock.prototype.draw = function () {
-    this.game.ctx.fillStyle = this.color;
+     this.game.ctx.fillStyle = this.color;
     this.game.ctx.fillRect(this.posX, this.posY, this.width, this.height);
 }
 

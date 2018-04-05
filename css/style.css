@@ -9,4 +9,28 @@ background-image: url("../images/ST-ewokvillage.jpg");
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
+    font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	font-size: 13px;
 }  
+
+
+button {
+	position: relative;
+	border: none;
+	display: inline-block;
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+			    inset 0px -5px 0px 0px rgba(0,0,0,0.3),
+				inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+	cursor: pointer;
+    margin: 36px;
+    padding: 10px 20px 12px 20px;
+	color: rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+    background: url(http://subtlepatterns.com/patterns/wood_pattern.png);
+}
+
