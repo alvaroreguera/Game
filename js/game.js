@@ -94,6 +94,7 @@ Game.prototype.isCollision = function () {
             this.player.onPlatform = true;
             this.player.jumping = false;
             this.player.y = rock.posY - this.player.height;
+            this.player.img.src='images/sprites/stand1.png';
             console.log(this.player.height);
         } else { this.player.onPlatform = false;}
     }.bind(this))

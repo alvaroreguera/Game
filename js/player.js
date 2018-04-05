@@ -95,7 +95,7 @@ Player.prototype.setListeners = function () {
         if (map[40] && map[38]) {
 
             if (this.onPlatform) {
-                // this.img.src=''
+                // this.img.src='images/sprites/stand1.png';
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;
@@ -105,6 +105,7 @@ Player.prototype.setListeners = function () {
         } else if (map[37] && map[38]) {
 
             if (!this.jumping) {
+                this.img.src='images/sprites/jumpL.png';
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;
@@ -116,6 +117,7 @@ Player.prototype.setListeners = function () {
         } else if (map[39] && map[38]) {
 
             if (!this.jumping) {
+                this.img.src='images/sprites/jumpR.png';
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;
@@ -127,6 +129,7 @@ Player.prototype.setListeners = function () {
         } else if (map[37]) {
 
             if (this.dx > -this.speed) {
+                this.img.src='images/sprites/walkL.png';
                 this.lastY = this.y;
                 this.lastX = this.x;
                 this.dx -= 3;
@@ -134,6 +137,7 @@ Player.prototype.setListeners = function () {
         } else if (map[39]) {
 
             if (this.dx < this.speed) {
+                this.img.src='images/sprites/walkD.png';
                 this.lastY = this.y;
                 this.lastX = this.x;
                 this.dx += 3;
@@ -141,6 +145,7 @@ Player.prototype.setListeners = function () {
         } else if (map[38]) {
 
             if (!this.jumping) {
+                this.img.src='images/sprites/jumpL.png';
                 this.lastY = this.y;
                 this.lastX = this.x;
                 this.jumping = true;
@@ -151,6 +156,7 @@ Player.prototype.setListeners = function () {
 
     document.onkeyup = function (event) {
         map[event.keyCode] = false;
+        this.img.src='images/sprites/stand1.png';
     }
 
 };
