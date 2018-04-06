@@ -24,7 +24,6 @@ function Player(game) {
     this.img.src = "images/sprites/stand1.png";
     this.width = 40;
     this.height = 50;
-    // this.animateImg();
 }
 
 Player.prototype.draw = function () {
@@ -35,12 +34,6 @@ Player.prototype.draw = function () {
         this.width,
         this.height
     );
-    // this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
-    // this.game.ctx.strokeStyle = "black";
-    // this.game.ctx.fillStyle = "blue";
-    // this.game.ctx.fill();
-    // this.game.ctx.stroke();
-    // this.game.ctx.closePath();
 
 };
 
@@ -57,10 +50,6 @@ Player.prototype.move = function () {
     if (this.jumping || !this.onPlatform) {
         this.y += this.dy;
     }
-
-    // if (!this.jumping && this.onPlatform && this.dy > 5) {console.log("llego")
-    //     this.dy = 0;
-    // }
 
     if (this.x + this.width > this.game.canvas.width) {
         this.x = this.game.canvas.width - this.width;
@@ -95,7 +84,6 @@ Player.prototype.setListeners = function () {
         if (map[40] && map[38]) {
 
             if (this.onPlatform) {
-                // this.img.src='images/sprites/stand1.png';
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;
@@ -109,7 +97,7 @@ Player.prototype.setListeners = function () {
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;
-                this.dy = -1 * this.speed * 1.5;
+                this.dy = -1 * this.speed * 1.2;
                 if (this.dx > -this.speed) {
                     this.dx -= 2;
                 }
@@ -121,7 +109,7 @@ Player.prototype.setListeners = function () {
                 this.jumping = true;
                 this.lastY = this.y;
                 this.lastX = this.x;
-                this.dy = -1.2 * this.speed * 1.5;
+                this.dy = -1 * this.speed * 1.2;
                 if (this.dx < this.speed) {
                     this.dx += 2;
                 }
@@ -149,7 +137,7 @@ Player.prototype.setListeners = function () {
                 this.lastY = this.y;
                 this.lastX = this.x;
                 this.jumping = true;
-                this.dy = -1.2 * this.speed * 1.2;
+                this.dy = -1 * this.speed * 1;
             }
         }
     }.bind(this);

@@ -12,11 +12,6 @@ function Win(game) {
     this.height = 60;
 }
 
-// Win.prototype.draw = function () {
-//     this.game.ctx.fillStyle = this.color;
-//     this.game.ctx.fillRect(this.x, this.y, this.width, this.height)
-
-// };
 
 Win.prototype.draw = function () {
     this.game.ctx.drawImage(

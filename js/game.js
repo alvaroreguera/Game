@@ -8,7 +8,7 @@ function Game(canvasId) {
     this.score = new Score(this);
     this.rock = [];
     this.rockNumber = 15;
-    this.decrement = 20;
+    this.decrement = 15;
 
 }
 Game.prototype.start = function () {
@@ -36,28 +36,23 @@ Game.prototype.victory = function () {
     this.reset();
     window.location.href = "victory.html";
     
-    // if (confirm("Victory!!!!")) {
-    //     this.start();
-    // }
 };
 
 Game.prototype.gameOver = function () {
     this.stop();
     this.reset();
     window.location.href = "gameover.html";
-    // if (confirm("GAME OVER. Play again?")) {
-    //     this.start();
-    // }
+
 };
 
 Game.prototype.reset = function () {
-    // this.background = new Background(this);
+
     this.player = new Player(this);
     this.win = new Win(this);
     this.score = new Score(this);
     this.rock = [];
     this.framesCounter = 0;
-    this.decrement = 20;
+    this.decrement = 15;
 };
 
 Game.prototype.generateRock = function () {
